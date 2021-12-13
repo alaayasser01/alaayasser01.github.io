@@ -1,0 +1,41 @@
+p {
+    color: steelblue;
+    font-size: larger;
+}
+.code{
+    background-color: hsl(207, 44%, 49% , 50%);
+    
+    color: black;
+}
+.boldy{
+    font-weight: bold;
+}
+
+.theTitle{
+    background-color: steelblue;
+    align-items: center;
+    font-weight: bold;
+    color: seashell;
+}
+
+.halfTitle{
+    font-weight: bold;
+}
+
+.title{
+    font-weight: bold;
+    text-decoration-line: underline;
+}
+.Notes{
+   color: rgb(0, 0, 0 , 0.8);
+}
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    width: 1200px;
+}

@@ -1,1 +1,139 @@
-Hello World
+<!DOCTYPE html>
+<html>
+    <head>
+<meta name="description" content="">
+<meta name="title" content="">
+<title>
+    Const keyword and '&' symbol in C++
+</title>
+<link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+<div class="container"><h1 class="theTitle">
+    Const keyword and '&' symbol in C++
+</h1>
+<h2 class="halfTitle">1.Const keyword in C++</h2>
+<p>
+    Whenever const keyword is attached with any method(), variable, pointer variable, 
+    and with the object of a class it prevents that specific object/method()/variable to modify its data items value.
+</p>
+<h2 class="boldy">But why do we care?</h2>
+<P> Const gives us the ability to document our program more clearly and actually enforce our documentation
+    by providing guarantees to our users that allow us to make performance optimizations
+    without the threat of damaging their data. </P>
+<p class="Notes">Note: If we try to initialize the const variable without assigning 
+    an explicit value then a compile-time error (CTE) is generated.</p>
+    <h2 class="titles">1-Documentation and Safety</h2>
+    <p>The primary purpose of const is to provide documentation and prevent programming mistakes.
+    </br>It's particularly useful to declare reference parameters to functions as const references:
+        </p>
+    <p class= "code">
+        bool verifyObject (const Obj& myobj);
+    </p>
+    <p class="Notes">Here, an obj object is passed by reference into verifyObject. For safety's sake,
+         const is used to ensure that this function cannot change the object. This can prevent silly programming mistakes 
+        that might otherwise result in damaging the object and ensure that no side effects of calling the function.</p>
+    <h2 class="titles"> 2-Const Pointers </h2>
+    <p>References, by their very nature, cannot change what they refer to. Pointers,
+     on the other hand, have two ways that you can use them: </p>
+    <p>1) By changing the data pointed to. </br>
+       2) By changing the pointer itself.</p>
+    <p>Consequently, there are two ways of declaring a const pointer: </p>
+    <p>
+        1) To prevent you from changing what is pointed to.
+        <p class="code">const int *p_int;</p>
+    </p>
+    <p>
+        2) To prevent you from changing the data pointed to.
+        <p class="code">int x;</br>
+            int * const p_int = &x;</p>
+    </p>
+    <p>We can think of this as reading that *p_int is a "const int", 
+        So the pointer may be changeable, but what p_int points to can't be touched.</br>
+      On the other hand, "* const p_int" is a regular integer, 
+      so the value stored in p_int itself cannot change (the address pointed to can't be changed). 
+<p class="Notes">Note: This pointer had to be initialized when it was declared: since the pointer itself is const.</p> 
+</p>
+<h2 class="titles">3-Const Function </h2>
+<p>The effects of declaring a variable to be const propagate throughout the program. Once we have a const object, it cannot be assigned to a non-const reference or use functions that are known to be capable of changing the state of the object, so we have to use "const functions".
+</p><p>The way to mark a function as const is to put const at the end of the function:</p>
+<p class="code"> int Loan::calcInterest() const {</br>
+            return loan_value * interest_rate; </br>
+    }
+    </p>
+<p class="Notes">Notes:</br>
+    •	Const functions can always be called </br>
+    •	Non-const functions can only be called by non-const objects </br>
+    •	when const functions return references or pointers to members of the class, they must also be const.
+    </p>
+<p>As const functions cannot return non-const references to an objects' data,
+     it might seem appropriate to have both const and non-const versions of a function, so we use “Const Overloading” </p>
+     <p class="code">int& myClass::getData(){ </br>
+                return data;</br>
+        }
+    </p>
+    <p class="Notes">// called for const objects only since a non-const version also exists</p>
+    <p class="code">const int& myData::getData() const{</br>
+                return data;</br>
+        }
+    </p>
+    <h2 class="titles"> 4-Const iterators </h2>
+    <p>const iterators are just like normal iterators, except that they cannot be used to modify the underlying data. 
+    </br>(Since iterators are a generalization of the idea of pointers, this makes sense.)</p>
+    <p class="code">std::vector&lt;int> vec;</br>
+        vec.push_back( 3 );</br>
+        vec.push_back( 4 );</br>
+        vec.push_back( 8 );</br> </br>
+         
+        for ( std::vector<int>::const_iterator itr = vec.begin(), end = vec.end(); 
+              itr != end;
+              ++itr )</br>
+        {</br>
+                // just print out the values...</br>
+                std::cout<< *itr <<std::endl;</br>
+        }
+        </p>
+    <p class="Notes">Note: we can use a const iterator to iterate over a non-const collection.</br> 
+        Why do that?</br> For the same reason that we normally use const: it prevents mistakes like ("oops, I meant to compare the two values, not assign them!") 
+        and it documents that we never intend to use the iterator to change the collection.</p>
+    <p class="titles">Extra notes:</p>
+    <p><li>we can use a const variable to specify a static array size.</li>
+        <li>We can use the const keyword to define constant values instead of “#define”.
+    </li></p> 
+    <p class="titles">Summary</p>
+    <p>Constant is not so much a way to gain efficiency as a way to document our code and ensure that some things cannot change. </p>
+    <p>Const-ness propagates throughout the program, so we must use const functions, const references, 
+        and const iterators to ensure that it would never be possible to modify data that was declared const.</p>
+    <h1 class="halfTitle">'&' symbol in C++</h1>
+    <p>The bitwise AND operator compares each bit of the first operand to that bit of the second operand.
+         If both bits are 1, the bit is set to 1. Otherwise, the bit is set to 0.
+         Both operands to the bitwise AND operator must be of integral types.</p>
+    <p class="code">
+        #include <iostream> </br>  
+            using namespace std; </br>
+        </br>
+            int main() {</br>  
+               unsigned short a = 0x5555;      // pattern 0101 ... </br> 
+               unsigned short b = 0xAAAA;      // pattern 1010 ...  </br>
+               cout << hex << ( a & b ) << endl; </br>
+            }
+    </p>
+    <p class="Notes">This gives the output − 0</p>
+    <p class="titles">Address Of operator</p>
+    <p>C++ provides two-pointer operators, which are Address of Operator (&) and Indirection Operator (*).</p>
+    <p>The address of Operator (&), and it is the complement of *. 
+        It is a unary operator that returns the address of the variable specified by its operand. For example,</p>
+    <p class="code">
+        #include &lt;iostream> </br>
+            using namespace std;</br>
+        </br>   
+            int main () {</br>
+               int  var;</br>
+               int  *ptr;</br>
+               // take the address of var</br>
+               ptr = &var;</br>
+            }    
+    </p>
+</div>
+</body>
+</html>
